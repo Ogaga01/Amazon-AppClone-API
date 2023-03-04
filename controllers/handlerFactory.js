@@ -73,7 +73,7 @@ exports.getAll = (Model) => {
   return catchAsyncError(async (req, res, next) => {
     let filter = {};
 
-    if (req.params.tourId) filter = { tour: req.params.tourId };
+    if (req.params.productId) filter = { product: req.params.productId };
     //Execute Query
     const features = new APIFeatures(Model.find(filter), req.query)
       .filter()

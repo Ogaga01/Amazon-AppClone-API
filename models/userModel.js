@@ -24,6 +24,17 @@ const userSchema = new mongoose.Schema({
     type: String,
     default: "default.jpg",
   },
+  cart: [
+    {products: [
+      {
+      type: mongoose.Schema.ObjectId,
+      ref: "Product",
+      required: [true, "Cart must have a product"],
+    },
+    ],
+    totalPrice: Number,
+    totalQuantity: Number,}
+  ],
   role: {
     type: String,
     enum: ["user", "admin"],
@@ -57,6 +68,18 @@ const userSchema = new mongoose.Schema({
     default: true,
     select: false,
   },
+});
+
+userSchema.pre(/^find/, function (next) {
+  this.populate({
+    path: "cart",
+    populate: {
+      path: "products",
+      select: "-__v -description -createdAt",
+    }
+  });
+
+  next();
 });
 
 userSchema.pre("save", function (next) {

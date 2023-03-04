@@ -66,7 +66,7 @@ exports.updateMe = catchAsyncError(async (req, res, next) => {
   }
 
   //2. Update user document
-  const filteredBody = filterObj(req.body, "name", "email");
+  const filteredBody = filterObj(req.body, "name", "email", "cart");
   if (req.file) filteredBody.photo = req.file.filename;
 
   const updatedUser = await User.findByIdAndUpdate(req.user.id, filteredBody, {
