@@ -5,7 +5,7 @@ const rateLimit = require("express-rate-limit");
 const helmet = require("helmet");
 const AppError = require("./utils/appError");
 const globalErrorHandler = require("./controllers/errorController");
-// const tourRouter = require("./routes/tourRoutes");
+const productRouter = require("./routes/productRoutes");
 const userRouter = require("./routes/userRoutes");
 // const viewRouter = require("./routes/viewRoutes");
 // const reviewRouter = require("./routes/reviewRoutes");
@@ -98,16 +98,9 @@ app.use((req, res, next) => {
 });
 
 // Route Handlers
-
-// app.get('/api/v1/tours', getAllTours);
-// app.get('/api/v1/tours/:id', getTour);
-// app.patch('/api/v1/tours/:id', updateTour);
-// app.delete('/api/v1/tours/:id', deleteTour)
-// app.post('/api/v1/tours', createTour);
-
 // Routes
 // app.use("/", viewRouter);
-// app.use("/api/v1/tours", tourRouter);
+app.use("/api/v1/products", productRouter);
 app.use("/api/v1/users", userRouter);
 // app.use("/api/v1/reviews", reviewRouter);
 // app.use("/api/v1/bookings", bookingRouter);
