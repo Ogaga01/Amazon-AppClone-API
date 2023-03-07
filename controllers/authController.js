@@ -47,7 +47,7 @@ exports.signUp = catchAsyncError(async (req, res, next) => {
     active: req.body.active,
   });
 
-  const url = `${req.protocol}://${req.get("host")}/me`;
+  const url = `${req.protocol}://${req.get("host")}/api/v1/products`;
   // console.log(url);
   await new Email(newUser, url).sendWelcome();
 
