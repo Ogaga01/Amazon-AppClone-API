@@ -8,7 +8,7 @@ const factory = require("./handlerFactory");
 const multerStorage = multer.memoryStorage();
 
 const multerFilter = (req, file, cb) => {
-  if (file.mimetype.startsWith("image")) {
+  if (file.type.startsWith("image")) {
     cb(null, true);
   } else {
     cb(new AppError("Not an image. Please upload a valid image", 400), false);
@@ -25,7 +25,7 @@ exports.uploadProductPhoto = upload.single("photo");
 exports.resizeProductPhoto = catchAsyncError(async (req, res, next) => {
   if (!req.file) return next();
 
-  req.file.filename = `product-${req.product.id}-${Date.now()}.jpeg`;
+  req.file.name = `product-${req.product.id}-${Date.now()}.jpeg`;
 
   await sharp(req.file.buffer)
     .resize(1000, 1000)
