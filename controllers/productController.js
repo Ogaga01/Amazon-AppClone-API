@@ -23,15 +23,15 @@ const upload = multer({
 exports.uploadProductPhoto = upload.single("photo");
 
 exports.resizeProductPhoto = catchAsyncError(async (req, res, next) => {
-  if (!req.file) return next();
+  if (!req.file.photo) return next();
 
-  req.file.filename = `product-${req.product.id}-${Date.now()}.jpeg`;
+  req.body.photo = `product-${req.params.id}-${Date.now()}.jpeg`;
 
-  await sharp(req.file.buffer)
+  await sharp(req.file.photo[0].buffer)
     .resize(1000, 1000)
     .toFormat("jpeg")
     .jpeg({ quality: 100 })
-    .toFile(`public/img/products/${req.file.filename}`);
+    .toFile(`public/img/products/${req.file.photo}`);
 
   next();
 });
