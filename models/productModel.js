@@ -32,7 +32,7 @@ const productSchema = new mongoose.Schema(
       required: [true, "A product must have a description"],
     },
     photo: {
-      type: String,
+      type: File,
       required: [true, "A product must have a image"],
     },
     createdAt: {
