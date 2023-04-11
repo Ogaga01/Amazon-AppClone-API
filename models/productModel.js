@@ -10,8 +10,8 @@ const productSchema = new mongoose.Schema(
       trim: true,
       maxLength: [45, "A product name must have less than 45 characters"],
       minLength: [5, "A product name must have more than 5 characters"],
-        },
-      slug:String,
+    },
+    slug: String,
     price: {
       type: Number,
       required: [true, "A product name must have a price"],
@@ -32,7 +32,7 @@ const productSchema = new mongoose.Schema(
       required: [true, "A product must have a description"],
     },
     photo: {
-      type: File,
+      type: String,
       required: [true, "A product must have a image"],
     },
     createdAt: {
