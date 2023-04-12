@@ -34,6 +34,7 @@ const productSchema = new mongoose.Schema(
     photo: {
       type: String,
       required: [true, "A product must have a image"],
+      default: "image.jpg",
     },
     createdAt: {
       type: Date,
