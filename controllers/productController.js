@@ -31,7 +31,7 @@ exports.resizeProductPhoto = catchAsyncError(async (req, res, next) => {
     .resize(1000, 1000)
     .toFormat("jpeg")
     .jpeg({ quality: 100 })
-    .toFile(`public/img/products/${req.file.photo}`);
+    .toFile(`public/img/products/${req.body.photo}`);
 
   next();
 });
