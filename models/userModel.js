@@ -32,8 +32,14 @@ const userSchema = new mongoose.Schema({
       required: [true, "Cart must have a product"],
     },
     ],
-    totalPrice: Number,
-    totalQuantity: Number,}
+    totalPrice: {
+      type: Number,
+      default: 0
+    },
+    totalQuantity: {
+      type: Number,
+      default: 0
+    },}
   ],
   role: {
     type: String,
