@@ -75,7 +75,7 @@ userSchema.pre(/^find/, function (next) {
     path: "cart",
     populate: {
       path: "products",
-      select: "id name price",
+      select: "id name price photo",
     }
   });
 
