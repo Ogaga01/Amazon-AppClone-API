@@ -25,21 +25,18 @@ const userSchema = new mongoose.Schema({
     default: "default.jpg",
   },
   cart: [
-    {products: [
-      {
-      type: mongoose.Schema.ObjectId,
-      ref: "Product",
-      required: [true, "Cart must have a product"],
+    {
+      products: [
+        {
+          type: mongoose.Schema.ObjectId,
+          ref: "Product",
+          required: [true, "Cart must have a product"],
+        },
+      ],
+      totalPrice: Number,
+      totalQuantity: Number,
+      default: { products: [], totalPrice: 0, totalQuantity: 0 },
     },
-    ],
-    totalPrice: {
-      type: Number,
-      default: 0
-    },
-    totalQuantity: {
-      type: Number,
-      default: 0
-    },}
   ],
   role: {
     type: String,
@@ -82,7 +79,7 @@ userSchema.pre(/^find/, function (next) {
     populate: {
       path: "products",
       select: "id name price photo",
-    }
+    },
   });
 
   next();
