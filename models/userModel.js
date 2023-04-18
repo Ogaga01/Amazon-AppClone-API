@@ -35,13 +35,6 @@ const userSchema = new mongoose.Schema({
       ],
       totalPrice: Number,
       totalQuantity: Number,
-      default: [{ products: [], totalPrice:{
-        type: Number,
-        default: 0,
-      }, totalQuantity: {
-        type: Number,
-        default: 0,
-      } }],
     },
   ],
   role: {
